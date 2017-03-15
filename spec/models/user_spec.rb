@@ -31,5 +31,11 @@ describe User do
       expect(user.errors[:password_confirmation]).to include("doesn't match Password")
     end
 
+    it "nicknameが7文字以上であれば登録できない" do
+      user = build(:user, nickname: "aaaaaaa")
+      user.valid?
+      expect(user.errors[:nickname][0]).to include("is too long")
+    end
+
   end
 end
