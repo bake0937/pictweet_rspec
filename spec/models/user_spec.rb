@@ -54,5 +54,10 @@ describe User do
       expect(user).to be_valid
     end
 
+    it "passwordが7文字以下であれば登録できない" do
+      user = build(:user, password: "aaaaaaa", password_confirmation: "aaaaaaa")
+      user.valid?
+      expect(user.errors[:password][0]).to include("is too short")
+    end
   end
 end
