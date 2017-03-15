@@ -49,5 +49,10 @@ describe User do
       expect(another_user.errors[:email][0]).to include("has already been taken")
     end
 
+    it "passwordが8文字以上であれば登録できる" do
+      user = build(:user, password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+      expect(user).to be_valid
+    end
+
   end
 end
