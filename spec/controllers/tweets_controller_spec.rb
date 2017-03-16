@@ -9,4 +9,12 @@ describe TweetsController do
     end
   end
 
+  describe 'GET #edit' do
+    it "アクション内で定義されているインスタンス変数の値が期待したものになるか" do
+      tweet = create(:tweet)
+      get :edit, id: tweet
+      expect(assigns(:tweet)).to eq tweet
+    end
+  end
+
 end
