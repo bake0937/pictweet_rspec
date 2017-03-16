@@ -15,6 +15,14 @@ describe TweetsController do
       get :edit, id: tweet
       expect(assigns(:tweet)).to eq tweet
     end
+
+    it "editアクションをリクエストした後、edit.html.erbに遷移するか" do
+      tweet = create(:tweet)
+      get :edit, id: tweet
+      expect(response).to render_template :edit
+    end
+  end
+
   end
 
 end
