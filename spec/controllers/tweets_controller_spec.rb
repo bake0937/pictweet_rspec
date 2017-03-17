@@ -23,6 +23,10 @@ describe TweetsController do
     end
   end
 
-  end
-
+  describe 'GET #index' do
+    it "作成日が降順でソートされたtweetsを取得しているか" do
+      tweets = create_list(:tweet, 3)
+      get :index
+      expect(assigns(:tweets)).to match(tweets.sort{ |a, b| b.created_at <=> a.created_at } )
+    end
 end
