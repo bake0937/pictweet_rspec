@@ -29,4 +29,11 @@ describe TweetsController do
       get :index
       expect(assigns(:tweets)).to match(tweets.sort{ |a, b| b.created_at <=> a.created_at } )
     end
+
+    it "indexアクションをリクエストした後、index.html.erbに遷移するか" do
+      get :index
+      expect(response).to render_template :index
+    end
+  end
+
 end
